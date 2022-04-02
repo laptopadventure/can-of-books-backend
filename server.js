@@ -19,17 +19,13 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => console.log('Mongoose has connected.'));
 
-app.get('/books', (request, response) => {
-  let books = Book.find({
-    status: 200
-  })
+app.get('/books', async (request, response) => {
+  const books = await Book.find({})
   response.send(books)
 })
 
 app.get('/test', (request, response) => {
   response.send('test request received')
 })
-
-mongoose.disconnect();
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
