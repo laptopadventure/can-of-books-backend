@@ -28,5 +28,15 @@ Finish time: 7:30 pm
 
 Actual time needed to complete: Hour and a half!
 
+Name of feature: Create. I'd like to add a new book to the shelf, so that I can update the list with my own recommendations.
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 9 pm
+
+Finish time: 
+
+Actual time needed to complete: 
+
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
