@@ -34,9 +34,9 @@ Estimate of time needed to complete: 2 hours
 
 Start time: 9 pm
 
-Finish time: 
+Finish time: 8:30pm, next day
 
-Actual time needed to complete: 
+Actual time needed to complete: 2 hours to complete
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
