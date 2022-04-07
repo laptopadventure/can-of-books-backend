@@ -34,8 +34,21 @@ app.post('/books', async (request, response) => {
   }
 })
 
+app.delete('/books/:id', async (request, response, next) => {
+  try{
+    await Book.findByIdAndDelete(request.params.id)
+    response.status('204').send('Book was deleted');
+  }catch(error) {
+    next(error.message);
+  }
+})
+
 app.get('/test', (request, response) => {
   response.send('test request received')
 })
+
+app.use((error, req, res, next) => {
+  res.status(500).send(error.message);
+});
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
