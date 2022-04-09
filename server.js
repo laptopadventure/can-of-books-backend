@@ -6,11 +6,12 @@ const cors = require('cors');
 
 // database
 const mongoose = require('mongoose');
-const Book = require('./models/book.js')
+const Book = require('./models/book.js');
 
 const PORT = process.env.PORT || 3002;
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 mongoose.connect(process.env.DATABASE_URL)
 
@@ -54,5 +55,9 @@ app.put('/books/:id', async (request, response, next) => {
 app.get('/test', (request, response) => {
   response.send('test request received')
 })
+
+app.use((error, req, res, next) => {
+  res.status(500).send(error.message);
+});
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
