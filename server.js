@@ -24,6 +24,33 @@ app.get('/books', async (request, response) => {
   response.send(books)
 })
 
+app.post('/books', async (request, response) => {
+  try{
+    const newBook = await Book.create(request.body);
+    response.status('201').send(newBook);
+  }catch(error) {
+    response.status('500').send(error.message)
+  }
+})
+
+app.delete('/books/:id', async (request, response, next) => {
+  try{
+    await Book.findByIdAndDelete(request.params.id)
+    response.status('204').send('Book was deleted');
+  }catch(error) {
+    next(error.message);
+  }
+})
+
+app.put('/books/:id', async (request, response, next) => {
+  try{
+    const result = await Book.findOneAndUpdate({_id: request.params.id}, request.body);
+    response.status('200').send(result);
+  }catch(error) {
+    next(error.message);
+  }
+})
+
 app.get('/test', (request, response) => {
   response.send('test request received')
 })

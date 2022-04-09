@@ -18,6 +18,9 @@
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Estimates
+
+### 1
+
 Name of feature: Storage. As a user, I'd like to view the list of books, so that whenever I visit the page, I can see the a full list of best books
 
 Estimate of time needed to complete: 1 hour
@@ -28,5 +31,30 @@ Finish time: 7:30 pm
 
 Actual time needed to complete: Hour and a half!
 
+### 2
+
+Name of feature: Create. I'd like to add a new book to the shelf, so that I can update the list with my own recommendations.
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 9 pm
+
+Finish time: 8:30pm, next day
+
+Actual time needed to complete: 2 hours to complete
+
+### 3
+
+Name of feature: Update. As a user, I want to update book details on my list, so that I can change the book status, or update the book details as I learn more about it.
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 1:15pm
+
+Finish time: 
+
+Actual time needed to complete: 
+
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+StackOverflow: https://stackoverflow.com/
