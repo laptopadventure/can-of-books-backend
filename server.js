@@ -43,6 +43,15 @@ app.delete('/books/:id', async (request, response, next) => {
   }
 })
 
+app.put('/books/:id', async (request, response, next) => {
+  try{
+    const result = await Book.findOneAndUpdate({_id: request.params.id}, request.body);
+    response.status('200').send(result);
+  }catch(error) {
+    next(error.message);
+  }
+})
+
 app.get('/test', (request, response) => {
   response.send('test request received')
 })
