@@ -43,7 +43,7 @@ app.delete('/books/:id', async (request, response, next) => {
   }
 })
 
-app.put('/books/:_id', async (request, response, next) => {
+app.put('/books/:id', async (request, response, next) => {
   try{
     const result = await Book.findOneAndUpdate({_id: request.params.id}, request.body);
     response.status('200').send(result);
