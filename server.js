@@ -65,13 +65,13 @@ app.get('/test', (request, response) => {
   response.send('test request received')
 })
 
-app.use((error, req, res, next) => {
-  res.status(500).send(error.message);
-});
-
 app.get('/user', (req, res) => {
   console.log('Getting the user: ', user);
   res.send(req.user);
+});
+
+app.use((error, req, res, next) => {
+  res.status(500).send(error.message);
 });
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
