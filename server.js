@@ -21,6 +21,10 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => console.log('Mongoose has connected.'));
 
+app.get('/test', (request, response) => {
+  response.send('test request received')
+})
+
 app.use(verifyUser);
 
 app.get('/books', async (request, response) => {
@@ -59,10 +63,6 @@ app.put('/books/:id', async (request, response, next) => {
   }catch(error) {
     next(error.message);
   }
-})
-
-app.get('/test', (request, response) => {
-  response.send('test request received')
 })
 
 app.get('/user', (req, res) => {
