@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3002;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(require('./auth.js'));
+const verifyUser = require('./auth.js')
 
 mongoose.connect(process.env.DATABASE_URL)
 
@@ -21,9 +21,16 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => console.log('Mongoose has connected.'));
 
+app.get('/test', (request, response) => {
+  response.send('test request received')
+})
+
+app.use(verifyUser);
+
 app.get('/books', async (request, response) => {
   try {
-    const books = await Book.find({email: req.user.email})
+    console.log(request.user.email)
+    const books = await Book.find({email: request.user.email})
     response.status(200).send(books)
   }
   catch(error) {
@@ -33,7 +40,7 @@ app.get('/books', async (request, response) => {
 
 app.post('/books', async (request, response) => {
   try{
-    const newBook = await Book.create({...request.body, email: req.user.email});
+    const newBook = await Book.create({...request.body, email: request.user.email});
     response.status('201').send(newBook);
   }catch(error) {
     response.status('500').send(error.message)
@@ -42,7 +49,7 @@ app.post('/books', async (request, response) => {
 
 app.delete('/books/:id', async (request, response, next) => {
   try{
-    await Book.findByIdAndDelete({_id: request.params.id, email: req.user.email})
+    await Book.findByIdAndDelete({_id: request.params.id, email: request.user.email})
     response.status('204').send('Book was deleted');
   }catch(error) {
     next(error.message);
@@ -51,16 +58,17 @@ app.delete('/books/:id', async (request, response, next) => {
 
 app.put('/books/:id', async (request, response, next) => {
   try{
-    const result = await Book.findOneAndUpdate({_id: request.params.id, email: req.user.email}, request.body);
+    const result = await Book.findOneAndUpdate({_id: request.params.id, email: request.user.email}, request.body);
     response.status('200').send(result);
   }catch(error) {
     next(error.message);
   }
 })
 
-app.get('/test', (request, response) => {
-  response.send('test request received')
-})
+app.get('/user', (req, res) => {
+  console.log('Getting the user: ', user);
+  res.send(req.user);
+});
 
 app.use((error, req, res, next) => {
   res.status(500).send(error.message);
